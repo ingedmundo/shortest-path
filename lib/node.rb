@@ -14,7 +14,20 @@ class Node
   end
 
   def closest
-    @relations.min_by { |n| n[:distance] }[:node]
+    not_visited.min_by { |n| n[:distance] }[:node]
+  end
+
+  def calculate_costs
+    @relations.each do |n|
+      new_cost = @cost + n[:distance]
+      if n[:node].cost == nil or n[:node].cost > new_cost
+        n[:node].cost = new_cost
+      end
+    end
+  end
+
+  def not_visited
+    @relations.select { |n|  n[:node].visited == false }
   end
 
 end
