@@ -46,6 +46,7 @@ describe Graph do
     node_6.add node_3, 2
     node_6.add node_5, 9
 
+    # Add nodes to graph
     subject.add node_1
     subject.add node_2
     subject.add node_3

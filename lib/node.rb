@@ -19,15 +19,21 @@ class Node
 
   def calculate_costs
     @relations.each do |n|
-      new_cost = @cost + n[:distance]
-      if n[:node].cost == nil or n[:node].cost > new_cost
+      new_cost = @cost.to_i + n[:distance]
+      if n[:node].cost.nil? || n[:node].cost > new_cost
         n[:node].cost = new_cost
       end
     end
   end
 
+  def unvisited?
+    @visited == false
+  end
+
+  private
+
   def not_visited
-    @relations.select { |n|  n[:node].visited == false }
+    @relations.select { |n|  n[:node].unvisited? }
   end
 
 end
