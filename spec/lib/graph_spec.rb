@@ -53,6 +53,9 @@ describe Graph do
     subject.add node_5
     subject.add node_6
 
-    expect(subject.shortest_path_to(5)).to eql 20
+    solution = subject.shortest_path_to(5)
+
+    expect(solution[:path]).to include(2, 3, 6, 5)
+    expect(solution[:cost]).to eql 20
   end
 end

@@ -4,6 +4,7 @@ class Graph
 
   def initialize
     @nodes = []
+    @solution = { cost: nil, path: [] }
   end
   
   def add(node)
@@ -16,6 +17,8 @@ class Graph
 
     current_node = @nodes.first
     target_node = @nodes.select { |n| n.id == id }[0]
+
+
     while current_node.id != target_node.id
       current_node.calculate_costs
       next_node = current_node.closest
@@ -23,9 +26,11 @@ class Graph
       current_node.visited = true
 
       current_node = next_node
+      @solution[:path] << current_node.id
+      @solution[:cost] = current_node.cost
     end
 
-    current_node.cost
+    @solution
   end
 
 end
