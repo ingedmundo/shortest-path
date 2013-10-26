@@ -1,11 +1,12 @@
 class Node
-  attr_accessor :visited, :distance
+  attr_accessor :visited, :distance, :cost
   attr_reader :id, :relations
 
   def initialize(id)
     @id = id
     @visited = false
     @relations = []
+    @cost = nil
   end
 
   def add(node, distance)
